@@ -1,4 +1,4 @@
-# Simple Lamp
+# Simple Lamp Stack
 
 A simple lamp stack that uses a basic Dockerfile. It is assumed there
 is an external database that the application can connect.
