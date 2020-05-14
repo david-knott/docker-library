@@ -1,0 +1,2 @@
+one
+<?php phpinfo()  ?>
