@@ -1,0 +1,30 @@
+version: '3.3'
+services:
+    apache1:
+        image: mrdavidknott/craftcms
+        container_name: apache1
+        build:
+            dockerfile: Dockerfile
+            context: .
+        volumes:
+            - ./www1/:/var/www/web
+    apache2:
+        image: mrdavidknott/craftcms
+        container_name: apache2
+        build:
+            dockerfile: Dockerfile
+            context: .
+        volumes:
+            - ./www2/:/var/www/web
+    reverse:
+        container_name: reverse
+        hostname: reverse
+        depends_on:
+            - apache1
+            - apache2
+        image: nginx
+        ports:
+            - 80:80
+            - 443:443
+        volumes:
+            - ./rp/config.d:/etc/nginx
