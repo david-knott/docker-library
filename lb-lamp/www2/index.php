@@ -1,2 +1,0 @@
-two
-<?php phpinfo()  ?>
