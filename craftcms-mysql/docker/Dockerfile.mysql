@@ -1,0 +1,9 @@
+FROM mysql:5.7
+
+ENV MYSQL_ROOT_PASSWORD=root
+ENV ALLOW_EMPTY_PASSWORD=no
+ENV MYSQL_USER=sbci_gov_ie
+ENV MYSQL_PASSWORD=password
+ENV MYSQL_DATABASE=sbci_gov_ie
+
+COPY *.sql /docker-entrypoint-initdb.d/

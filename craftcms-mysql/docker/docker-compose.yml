@@ -1,0 +1,28 @@
+version: '3.3'
+services:
+    craftcms:
+        image: sbci.gov.ie.craftcms
+        build:
+            dockerfile: Dockerfile
+            context: .
+        depends_on:
+            - database
+        links:
+            - database
+        volumes:
+            - ../main:/var/www/
+        ports:
+            - 8080:80
+    database:
+        user: root
+        image: sbci.gov.ie.db
+        build:
+            dockerfile: Dockerfile.mysql
+            context: .
+        volumes:
+            - mysql_data_sbci:/var/lib/mysql
+        ports:
+            - 3306:3306
+volumes:
+    mysql_data_sbci:
+        driver: local
