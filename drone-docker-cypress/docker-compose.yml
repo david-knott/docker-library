@@ -1,0 +1,21 @@
+# e2e/docker-compose.yml from repo
+version: '3.2'
+services:
+  # this is the web application we are going to test
+  test:
+    build: ./
+  # Cypress container
+    volumes:
+      - ./main/:/var/www
+      - $SSH_AUTH_SOCK:/ssh-agent
+    environment:
+      - SSH_AUTH_SOCK=/ssh-agent
+  cypress:
+    image: "cypress/included:3.2.0"
+    depends_on:
+      - test
+    environment:
+      - CYPRESS_baseUrl=https://www.mhc.ie
+    working_dir: /working
+    volumes:
+      - ./main:/working
